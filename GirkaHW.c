@@ -35,3 +35,5 @@ void Split(char* string, char* delimiters, char*** tokens, int* tokensCount) {
 		tmp = tmp + 1;
 	}
 }
+
+// TODO: продемонстрируйте в int main(), как воспользоваться ф-ей Split
