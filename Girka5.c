@@ -22,30 +22,29 @@ int main(int argc, char* argv[]) {
         pid_t result = fork();
 
         if (result < 0) {
-                printf("Can't fork children\n");
+                printf("fork's error\n");
                 exit(-1);
         }
 
-        int fd1, fd2;
-        // TODO: куски кода с 31 строки по 49ю и с50 по 64ю почти не отличаются. необходимо избавиться от дублирования кода.
+        int fdRd, fdWr;
         if (atoi(argv[1]) == 0) {
-                fd1 = open("a.fifo", O_RDONLY);
-                fd2 = open("b.fifo", O_WRONLY);
+                fdRd = open("a.fifo", O_RDONLY);
+                fdWr = open("b.fifo", O_WRONLY);
         }
         else if (atoi(argv[1]) == 1) {
-                fd1 = open("b.fifo", O_RDONLY);
-                fd2 = open("a.fifo", O_WRONLY);
+                fdRd = open("b.fifo", O_RDONLY);
+                fdWr = open("a.fifo", O_WRONLY);
         }
-        char buffer[100];
-        char buffer_1[100];
+        char bufferWr[100];
+        char bufferRd[100];
 
         while (1) {
                         if (result != 0) {
-                                fgets(buffer, 100, stdin);
-                                write(fd2, buffer, 100);
+                                fgets(bufferWr, 100, stdin);
+                                write(fdWr, bufferWr, 100);
                         } else {
-                                read(fd1, buffer_1, 100);
-                                printf("%s", buffer_1);
+                                read(fdRd, bufferRd, 100);
+                                printf("%s", bufferRd);
                         }
         }
 
