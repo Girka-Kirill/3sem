@@ -28,6 +28,7 @@ void* ZeroWrite (void* dummy) {
                 printf("%s", buffer);
         }
 }
+// todo: если ZeroRead отличается от OneRead всего одним параметром, то не нужно копировать всё ф-ю из-за этого: передайти в качестве входного аргумента этот параметр
 
 void* OneRead (void* dummy) {
         int fd1 = open(b, O_WRONLY);
