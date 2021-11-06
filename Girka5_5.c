@@ -51,8 +51,8 @@ int main() {
                         printf ("Thread error\n");
                         exit(-1);
                 }
+        pthread_join(thid, (void **)NULL);
     }
-    pthread_join(thid, (void **)NULL);
     // todo: нужно позвать join для всех созданных нитей, а не только для последней, т.к. нет гарантии, что именно последняя запущенная доработает последней
     printC(N, m);
     free(a);
