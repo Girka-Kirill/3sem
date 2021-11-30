@@ -12,7 +12,7 @@ char b[] = "b.fifo";
 void* FunWrite (int* fd) {
         char buffer[100];
         while (1) {
-                read(&fd, buffer, 100);
+                read(*fd, buffer, 100);
                 printf("%s", buffer);
         }
 }
@@ -21,7 +21,7 @@ void* FunRead (int* fd) {
         char buffer[100];
         while (1) {
                 fgets(buffer, 100, stdin);
-                write(&fd, buffer, 100);
+                write(*fd, buffer, 100);
         }
 }
 
