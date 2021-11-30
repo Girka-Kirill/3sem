@@ -23,12 +23,13 @@ void* FunRead (int* fd) {
                 fgets(buffer, 100, stdin);
                 write(*fd, buffer, 100);
         }
+
 }
 
 
 void ChattingZeroArg () {
         pthread_t thid1, thid2;
-        int fdwr = open(a, O_WRONGLY);
+        int fdwr = open(a, O_WRONLY);
         int fdrd = open(b, O_RDONLY);
         int result1 = pthread_create(&thid1, (pthread_attr_t *)NULL, FunRead, &fdrd);
 
@@ -49,11 +50,11 @@ void ChattingZeroArg () {
 
 void ChattingOneArg () {
         pthread_t thid1, thid2;
-        int fdwr = open(b, O_WRONGLY);
+        int fdwr = open(b, O_WRONLY);
         int fdrd = open(a, O_RDONLY);
         int result1 = pthread_create(&thid1, (pthread_attr_t *)NULL, FunRead, &fdrd);
 
-        if (result != 0) {
+        if (result1 != 0) {
                 printf ("Thread error\n");
                 exit(-1);
         }
